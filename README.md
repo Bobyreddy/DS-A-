@@ -1,2 +1,2 @@
 # DS-A-
-Lap programs
+Lab programs
