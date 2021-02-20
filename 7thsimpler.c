@@ -20,7 +20,7 @@ struct node{
     struct node *link; 
 }*start;
 
-int ch, n, i, m, a, pos;
+int ch, n, i;
 int usn, sem, phno;
 char name[20], branch[20];
 
@@ -78,7 +78,7 @@ void main(){
 }
 
 void create(int usn, int sem, int phno, char name[], char branch[]){
-    struct node *q, *tmp;
+    struct node *tmp;
     tmp = (struct node*)malloc(sizeof(struct node));
     tmp -> usn = usn;
     tmp -> sem = sem;
@@ -112,7 +112,6 @@ void display(){
             printf("\n BRANCH : %s", q -> branch);
              q = q -> link;
         }
-        printf(NULL);
         printf("\nTotal number of students = %d", count);
     }
 }
