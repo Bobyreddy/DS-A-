@@ -13,15 +13,6 @@ Support the program with appropriate functions for each of the above operations
 
 #define MAX 100
 
-// void attach(float, int, int, int);
-// int compare(int, int);
-// int getmaxexp(int);
-// void addpolynomial(int, int, int, int, int, int);
-// void printpolynomial(polynomial , int, int);
-// void readpolynomial(polynomial , int, int);
-// void calculatepolynomial();
-// void evaluatepolynomial();
-
 typedef struct{
     float coef;
     int x_exp;
@@ -33,6 +24,14 @@ polynomial terms[MAX];
 
 int totalterms = 0;
 int getmaxexp(int t);
+void evaluatepolynomial();
+void attach(float , int , int , int );
+int compare(int , int );
+int getmaxexp(int);
+void addpolynomial(int , int , int , int , int *, int *);
+void printpolynomial(polynomial [], int , int );
+void readpolynomial(polynomial [], int , int );
+void calculatepolynomial();
 
 void attach(float coeff, int expx, int expy, int expz){
     if(totalterms >= MAX){
@@ -89,7 +88,7 @@ void addpolynomial(int startA, int finishA, int startB, int finishB, int *startD
                     }
                     startA++;
                     startB++;
-                    break;
+            break;
 
             case 1: attach(terms[startA].coef, terms[startA].x_exp, terms[startA].y_exp, terms[startA].z_exp);
                     startA++;
