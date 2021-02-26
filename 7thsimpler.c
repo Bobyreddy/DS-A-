@@ -14,59 +14,45 @@ f. Exit
 #include<stdlib.h>
 #include<string.h>
 
-struct node{
+
+typedef struct nodes{
     int usn, sem, phno;
     char name[20], branch[20];
-    struct node *link; 
-}*start;
+    struct nodes *link; 
+}node;
 
-int ch, n, i;
+node *start = NULL;
+
 int usn, sem, phno;
 char name[20], branch[20];
 
-void create(int, int, int, char[], char[]);
+void create();
 void display();
-void insertfront(int, int, int, char[], char[]);
-void insertend(int, int, int, char[], char[]);
+void insertfront();
+void insertend();
 void deletefront();
 void deleteend();
 void printfun();
 
 void main(){
-    start = NULL;
+    int ch;
     do{
-        printf("\n MENU \n");
-        printf("\n 1. create");
-        printf("\n 2. display");
-        printf("\n 3. insert front");
-        printf("\n 4. delete front");
-        printf("\n 5. insert end");
-        printf("\n 6. delete end");
-        printf("\n 7. Exit..");
-        printf("\n \n enter your choice...: ");
+        printf("\n MENU \n\n 1. create\n 2. display\n 3. insert front\n 4. delete front\n 5. insert end\n 6. delete end\n 7. Exit..\n \n enter your choice...: ");
         scanf("%d", &ch);
         switch(ch){
-            case 1: 
-                    printf("\n \n how many nodes u want to create \n ");
-                    scanf("%d", &n);
-                    for(i=0; i<n; i++){
-                        printfun();
-                        create(usn, sem, phno, name, branch);
-                    }
+            case 1: create(); 
             break;
 
             case 2: display();
             break;
 
-            case 3: printfun();
-                    insertfront(usn, sem, phno, name, branch);
+            case 3: insertfront();
             break;
 
             case 4: deletefront();
             break;
 
-            case 5: printfun();
-                    insertend(usn, sem, phno, name, branch);
+            case 5: insertend();
             break;
 
             case 6: deleteend();
@@ -77,26 +63,32 @@ void main(){
     }while(ch != 7);
 }
 
-void create(int usn, int sem, int phno, char name[], char branch[]){
-    struct node *tmp;
-    tmp = (struct node*)malloc(sizeof(struct node));
-    tmp -> usn = usn;
-    tmp -> sem = sem;
-    tmp -> phno = phno;
-    strcpy(tmp -> name, name);
-    strcpy(tmp -> branch, branch);
-    tmp -> link = NULL;
-    if(start == NULL){
-        start = tmp;
+void create(){
+    node *tmp;
+    int n, i;
+    printf("\n \n how many nodes u want to create \n ");
+    scanf("%d", &n);
+    for(i=0; i<n; i++){
+        printfun();
+        tmp = (node*)malloc(sizeof(node));
+        tmp -> usn = usn;
+        tmp -> sem = sem;
+        tmp -> phno = phno;
+        strcpy(tmp -> name, name);
+        strcpy(tmp -> branch, branch);
+        tmp -> link = NULL;
+        if(start == NULL){
+            start = tmp;
+        }
+        else{
+            tmp -> link = start;
+            start = tmp;
     }
-    else{
-        tmp -> link = start;
-        start = tmp;
     }
 }
 
 void display(){
-    struct node *q;
+    node *q;
     int count = 0;
     if(start == NULL){
         printf("\n list is empty \n");
@@ -109,16 +101,17 @@ void display(){
             printf("\n SEM : %d", q -> sem);
             printf("\n PHNO : %d", q -> phno);
             printf("\n NAME : %s", q -> name);
-            printf("\n BRANCH : %s", q -> branch);
-             q = q -> link;
+            printf("\n BRANCH : %s\n", q -> branch);
+            q = q -> link;
         }
         printf("\nTotal number of students = %d", count);
     }
 }
 
-void insertfront(int usn, int sem, int phno, char name[], char branch[]){
-    struct node *temp;
-    temp = (struct node*)malloc(sizeof(struct node));
+void insertfront(){
+    node *temp;
+    temp = (node*)malloc(sizeof(node));
+    printfun();
     temp -> usn = usn;
     temp -> sem = sem;
     temp -> phno = phno;
@@ -134,9 +127,10 @@ void insertfront(int usn, int sem, int phno, char name[], char branch[]){
     }
 }
 
-void insertend(int usn, int sem, int phno, char name[], char branch[]){
-    struct node *q, *temp;
-    temp = (struct node*)malloc(sizeof(struct node));
+void insertend(){
+    node *q, *temp;
+    temp = (node*)malloc(sizeof(node));
+    printfun();
     temp -> usn = usn;
     temp -> sem = sem;
     temp -> phno = phno;
@@ -157,8 +151,7 @@ void insertend(int usn, int sem, int phno, char name[], char branch[]){
 }
 
 void deletefront(){
-    struct node *temp;
-    temp = start;
+    node *temp = start;
     if(start -> link == NULL){
         free(start); 
         start = NULL;
@@ -171,8 +164,8 @@ void deletefront(){
 }
 
 void deleteend(){
-    struct node *temp = start;
-    struct node *t;
+    node *temp = start;
+    node *t;
     if(start -> link == NULL){
         free(start);
         start = NULL;
