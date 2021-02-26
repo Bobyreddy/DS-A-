@@ -61,7 +61,7 @@ float evaluate(char s[], float d[]){
                 break;
                 case '*': push(op1 * op2);
                 break;
-                case '/': push(op1 / op1);
+                case '/': push(op1 / op2);
                 break;
                 case '^': push(pow(op1, op2));
                 break;
