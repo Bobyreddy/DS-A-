@@ -90,7 +90,7 @@ void main(){
             case 5: exit(0);
                     break;
 
-            default: printf("\n invalied choice \n");
+            default: printf("\n invalid choice \n");
                     break;
         }
     }while(ch!=5);
