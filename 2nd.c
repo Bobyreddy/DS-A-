@@ -20,32 +20,32 @@ Step 6: Stop
 #include<stdio.h>
 
 char str[100], pat[50], rep[50], ans[100];
-int i, j, c, m, k, flag = 0; 
+int i, j, k, l, m, flag = 0; 
 
 void stringmatch(){
-    i = j = c = m = 0;  
-    while(str[c] != '\0'){
-        if(str[m] == pat[i]){
-            i++;
-            m++;
-            if(pat[i]=='\0'){
+    i = j = k = l = m = 0;  
+    while(str[i] != '\0'){
+        if(str[j] == pat[k]){
+            j++;
+            k++;
+            if(pat[k]=='\0'){
                 flag = 1; 
-                for(k = 0; rep[k] != '\0'; k++, j++){
-                    ans[j] = rep[k];
+                for(l = 0; rep[l] != '\0'; l++, m++){
+                    ans[m] = rep[l];
                 }
-                i = 0; 
-                c = m;
+                k = 0; 
+                i = j;
             }
         }
         else{
-            ans[j] = str[c];
-            j++;
-            c++;
-            m = c;
-            i = 0;
+            ans[m] = str[i];
+            m++;
+            i++;
+            j = i;
+            k = 0;
         }
     }
-    ans[j] = '\0';
+    ans[m] = '\0';
 }
 
 void main(){
