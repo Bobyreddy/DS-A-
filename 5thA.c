@@ -32,7 +32,6 @@ void main(){
     scanf("%s", suffix);
     while(suffix[i] != '\0'){
         if(isalpha(suffix[i])){
-            fflush(stdin);
             printf("\n Enter the value of %c: ", suffix[i]);
             scanf("%f", &data[i]);
         }
