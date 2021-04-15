@@ -1,7 +1,17 @@
+/*
+. Design, Develop and Implement a Program in C for the following operations on
+Graph(G) of Cities
+a. Create a Graph of N cities using Adjacency Matrix.
+b. Print all the nodes reachable from a given starting node in a digraph using BFS
+method
+c. Check whether a given graph is connected or not using DFS method.Note: In the
+examination each student picks one question from a lot of all the 14 questions. 
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 
-int a[10][10], n, m, i, j, source, s[10], b[10], r = -1;
+int a[10][10], n, i, j, source;
 int visited[10];
 void BFS(int);
 void DFS(int [10][10], int, int [20], int);
@@ -22,7 +32,6 @@ void main(){
             printf("\n The vertex that is not reachable is %d", i);
         }
     }
-    m = 1;
     DFS(a, source, visited, n);
     for(i=1; i<=n; i++){
         if(visited[i] == 0){
@@ -33,8 +42,8 @@ void main(){
     printf("\n Graph is connected");
 }
 
-void BFS( int source){
-    int q[10], u, f=0; r=-1;
+void BFS(int source){
+    int q[10], u, f=0, r=-1;
     q[++r] = source;
     visited[source] = 1;
     printf("\n The reachable vertices are : ");
@@ -51,11 +60,10 @@ void BFS( int source){
 }
 
 void DFS(int a[10][10], int u, int visited[10], int n){
-    int v;
     visited[u] = 1;
-    for(v=1; v<=n; v++){
-        if(a[u][v] == 1 && visited[v]==0){
-            DFS(a, v, visited, n);
+    for(i=1; i<=n; i++){
+        if(a[u][i] == 1 && visited[i]==0){
+            DFS(a, i, visited, n);
         }
     }
 }
