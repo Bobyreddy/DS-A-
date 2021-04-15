@@ -1,11 +1,21 @@
-# include <stdio.h>
-# include <stdlib.h>
+/*
+ Design, Develop and Implement a menu driven Program in C for the following
+operations on Binary Search Tree (BST) of Integers
+a. Create a BST of N Integers: 6, 9, 5, 2, 8, 15, 24, 14, 7, 8, 5, 2
+b. Traverse the BST in Inorder, Preorder and Post Order
+c. Search the BST for a given element (KEY) and report the appropriate message
+d. Delete an element(ELEM) from BST
+e. Exit
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
 struct node {
     int value;
     struct node* left;
     struct node* right;
 };
-struct node* root;
+struct node* root = NULL;
 
 struct node* insert(struct node* r, int data);
 void inorder(struct node* r);
@@ -17,7 +27,6 @@ struct node* delete1(struct node* root, int key);
 void main(){
    int choice,key,i;
    struct node* tmp;
-   root = NULL;
    int n, v;
    printf("\n Program For Binary Search Tree ");
    printf("\n How many data's do you want to insert :\n");
@@ -27,8 +36,8 @@ void main(){
       scanf(" %d", &choice);
       switch (choice){
       case 1:
-        for(i=0; i<n; i++){
-		printf("Data %d: ", i+1);
+        for(i=1; i<=n; i++){
+		printf("Data %d: ", i);
 		scanf("%d", &v);
 		root = insert(root, v);
 	    }
